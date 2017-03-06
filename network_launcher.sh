@@ -19,6 +19,9 @@ function validateArgs {
         if [ "${UP_DOWN}" == "down" ]; then
 		return
 	fi
+        if [ "${UP_DOWN}" == "remove" ]; then
+                return
+        fi
 }
 
 validateArgs
@@ -33,13 +36,12 @@ if [ "${UP_DOWN}" == "up" ]; then
                 sed 's/\(.*fabric-'"$i"'-x86_64\)\(.*\)/\1:'"$TAG"'/;s/\(.*fabric-'"$j"'-x86_64\)\(.*\)/\1:'"$TAG"'/;s/\(.*fabric-'"$k"'-x86_64\)\(.*\)/\1:'"$CA_TAG"'/' docker-compose.yml > docker-compose.yml.tmp
                 cp docker-compose.yml.tmp docker-compose.yml
                 rm docker-compose.yml.tmp
-                echo "====================Pulling JavaENV Image===================="
-                docker pull rameshthoomu/fabric-javaenv-x86_64:$TAG
                 echo "====================Pulling CCENV Image===================="
                 docker pull rameshthoomu/fabric-ccenv-x86_64:$TAG
-done
-echo "====================Starting the Network===================="
-docker-compose -f docker-compose.yml up -d
+                docker tag rameshthoomu/fabric-ccenv-x86_64:$TAG hyperledger/fabric-ccenv:$TAG
+        done
+        echo "====================Starting the Network===================="
+        docker-compose -f docker-compose.yml up -d
 
 elif [ "${UP_DOWN}" == "down" ]; then ##Clean up the network
 	docker-compose -f docker-compose.yml down
@@ -47,9 +49,9 @@ elif [ "${UP_DOWN}" == "down" ]; then ##Clean up the network
         #Cleanup the chaincode containers
 	docker-compose down
 	#Cleanup the unwated images
-	docker rmi -f $(docker images | grep "dev-vp" | awk '{print $3}') 
+	#docker rmi -f $(docker images | grep "" | awk '{print $3}') 
 
-elif ["${UP_DOWN}" == "remove" ]; then
+elif [ "${UP_DOWN}" == "remove" ]; then
         docker rmi -f $(docker images | grep rameshthoomu)
 
 else
