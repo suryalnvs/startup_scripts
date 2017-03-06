@@ -30,8 +30,6 @@ services:
     command: orderer
     ports: 
       - 7050:7050
-    volumes: 
-      - /opt/gopath/src/github.com/hyperledger/fabric/msp/sampleconfig:/etc/hyperledger/msp/sampleconfig
     container_name: orderer0
     networks: 
       - bridge
@@ -55,7 +53,6 @@ services:
       - CORE_LOGGING_LEVEL=ERROR
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     volumes: 
-      - /opt/gopath/src/github.com/hyperledger/fabric/msp/sampleconfig:/etc/hyperledger/msp/sampleconfig
       - /var/run:/host/var/run/
     command: peer node start
     links: 
@@ -87,8 +84,7 @@ services:
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       - CORE_LOGGING_LEVEL=ERROR
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
-    volumes: 
-      - /opt/gopath/src/github.com/hyperledger/fabric/msp/sampleconfig:/etc/hyperledger/msp/sampleconfig
+    volumes:
       - /var/run:/host/var/run/
     command: peer node start
     links: 
