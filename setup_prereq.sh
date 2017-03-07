@@ -14,7 +14,7 @@ fi
 echo "===============Setting GOROOT and GOPATH==============="
 if [ ! -f "/etc/profile.d/setup.sh" ]; then
      echo -e "export GOROOT=/home/$(whoami)/go\nexport GOPATH=/home/$(whoami)/gopath\nexport PATH=\$PATH:$GOROOT/bin" | sudo tee -a /etc/profile.d/setup.sh
-     source /etc/profile.d/setup.sh
+     source /etc/profile.d/setting_path.sh
 fi
 
 echo "===============Installing Docker==============="
