@@ -40,17 +40,13 @@ services:
     environment: 
       - CORE_PEER_ID=peer0
       - CORE_PEER_NETWORKID=peer0
-      - CORE_PEER_ADDRESSAUTODETECT=false
+      - CORE_PEER_ADDRESSAUTODETECT=true
       - CORE_NEXT=true
       - CORE_PEER_ENDORSER_ENABLED=true
-      - CORE_PEER_ADDRESS=0.0.0.0:7051
-      - CORE_PEER_COMMITTER_ENABLED=true
       - CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer0:7050
       - CORE_PEER_PROFILE_ENABLED=true
-      - CORE_PEER_DISCOVERY_PERIOD=60s
-      - CORE_PEER_DISCOVERY_TOUCHPERIOD=60s
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      - CORE_LOGGING_LEVEL=ERROR
+      - CORE_LOGGING_LEVEL=DEBUG
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     volumes: 
       - /var/run:/host/var/run/
@@ -71,18 +67,14 @@ services:
     environment: 
       - CORE_PEER_ID=peer1
       - CORE_PEER_NETWORKID=peer1
-      - CORE_PEER_ADDRESSAUTODETECT=false
+      - CORE_PEER_ADDRESSAUTODETECT=true
       - CORE_NEXT=true
       - CORE_PEER_ENDORSER_ENABLED=true
-      - CORE_PEER_ADDRESS=0.0.0.0:7052
-      - CORE_PEER_COMMITTER_ENABLED=true
       - CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer0:7050
       - CORE_PEER_PROFILE_ENABLED=true
-      - CORE_PEER_DISCOVERY_PERIOD=60s
-      - CORE_PEER_DISCOVERY_TOUCHPERIOD=60s
-      - CORE_PEER_DISCOVERY_ROOTNODE=0.0.0.0:7051
+      - CORE_PEER_DISCOVERY_ROOTNODE=192.168.0.52:7051
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      - CORE_LOGGING_LEVEL=ERROR
+      - CORE_LOGGING_LEVEL=DEBUG
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     volumes:
       - /var/run:/host/var/run/
@@ -92,31 +84,8 @@ services:
       - ca
       - peer0
     ports: 
-      - 7052:7051
-      - 7056:7053
+      - 7056:7051
+      - 7058:7053
     container_name: peer1
     networks: 
       - bridge
-  cli:
-    container_name: cli
-    image: rameshthoomu/fabric-peer-x86_64:x86_64-0.7.0-snapshot-509d8ed
-    tty: true
-    environment:
-      - GOPATH=/opt/gopath
-      - CORE_PEER_ADDRESSAUTODETECT=true
-      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      - CORE_LOGGING_LEVEL=DEBUG
-      - CORE_NEXT=true
-      - CORE_PEER_ID=cli
-      - CORE_PEER_ENDORSER_ENABLED=true
-      - CORE_PEER_ADDRESS=peer0:7051
-      - CORE_PEER_GOSSIP_IGNORESECURITY=true
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
-    command: /bin/bash 
-    volumes:
-      - /var/run/:/host/var/run/
-      - ./examples/:/opt/gopath/src/github.com/hyperledger/fabric/examples/
-    depends_on:
-      - orderer0
-      - peer0
-      - peer1
