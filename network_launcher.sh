@@ -49,11 +49,10 @@ if [ "${UP_DOWN}" == "up" ]; then
 
 elif [ "${UP_DOWN}" == "down" ]; then ##Clean up the network
 	docker-compose -f docker-compose.yml down
-        #rm -rf keyValStore chaincodeID
-        #Cleanup the chaincode containers
-	docker-compose down
+	#Cleanup chaincode containers
+	docker rm -f $(docker ps -aq)
 	#Cleanup the unwated images
-	#docker rmi -f $(docker images | grep "" | awk '{print $3}') 
+	docker rmi -f $(docker images | grep "dev" | awk '{print $3}') 
 
 elif [ "${UP_DOWN}" == "remove" ]; then
         docker rmi -f $(docker images | grep rameshthoomu)
