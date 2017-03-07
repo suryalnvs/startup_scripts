@@ -29,10 +29,15 @@ sudo apt-get update
 sudo apt-get -y install linux-image-extra-$(uname -r) linux-image-extra-virtual
 sudo apt-get -y install docker-engine
 sudo usermod -aG docker $(whoami)
-sudo sed  -i 's/\(.* -H fd:\/\/\)\(.*\)/\1 -H tcp\:\/\/0.0.0.0\:2375 -H unix\:\/\/\/var\/run\/docker\.sock/' /lib/systemd/system/docker.service
-sudo systemctl restart docker.service
-sudo systemctl restart docker.socket
-sudo systemctl daemon-reload
+if [ "$(lsb_release -rs)" == "16.04" || "$(lsb_release -rs)" == "16.10" ]; then 
+     sudo sed  -i 's/\(.* -H fd:\/\/\)\(.*\)/\1 -H tcp\:\/\/0.0.0.0\:2375 -H unix\:\/\/\/var\/run\/docker\.sock/' /lib/systemd/system/docker.service
+     sudo systemctl restart docker.service
+     sudo systemctl restart docker.socket
+     sudo systemctl daemon-reload
+
+elif [ "$(lsb_release -rs)" == "14.04" ]; then
+     echo "DOCKER_OPTS=\"-s=aufs -r=true --api-cors-header='*' -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock \"" | sudo tee /etc/default/docker
+fi
 sudo service docker restart
 
 echo "===============Installing NodeJS and NPM==============="
@@ -45,7 +50,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.10.0/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 echo "===============Installing PIP==============="
-sudo apt-get install python-pip python-dev
+sudo apt-get -y install python-pip python-dev
 sudo pip install --upgrade pip
 
 echo "===============Installing Vagrant==============="
