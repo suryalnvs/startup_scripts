@@ -17,8 +17,34 @@ To install all the prerequisites for the environment, execute the following.
    cd contingent-labor/network
    ./setup_prereq.sh
 ```
-Check your Docker and Docker-Compose versions with the following commands:
+Check your Docker, Docker-Compose, Go, NodeJs, Npm versions with the following commands:
 ```bash
-    docker version
+    docker versionh
     docker-compose version
+    go version
+    node -v
+    npm -v
+```
+## Launching the Blockchain Network with one orderer, two peers and one ca server
+```bash
+   cd contingent-labor/network
+   ./network_launcher.sh up
+```
+This will pull the images for Orderer, Peer and CA which passed end-to-end node-sdk and java-sdk programs and launch the network using these images.
+
+## Installing the Node Modules
+```bash
+   ./network_launcher.sh modules
+```
+## Deploying the Chaincode 
+```bash
+   ./network_launcher.sh deploy
+```
+## Starting the Application
+```bash
+   ./network_launcher.sh start-app
+```
+## Cleaning the Network
+```bash
+   ./network_launcher.sh down
 ```
