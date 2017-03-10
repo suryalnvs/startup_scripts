@@ -19,7 +19,7 @@ To install all the prerequisites for the environment, execute the following.
 ```
 Check your Docker, Docker-Compose, Go, NodeJs, Npm versions with the following commands:
 ```bash
-    docker versionh
+    docker version
     docker-compose version
     go version
     node -v
