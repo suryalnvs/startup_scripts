@@ -79,3 +79,7 @@ info: [Peer.js]: Peer.const - url: grpc://localhost:7056 options  grpc.ssl_targe
 ```bash
    ./network_launcher.sh down
 ```
+```bash
+archana@archana-ITPC:~/gopath/src/github.com/hyperledger/fabric/procurement/network$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
