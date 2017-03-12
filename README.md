@@ -57,6 +57,14 @@ f845ed1fd438        rameshthoomu/fabric-orderer-x86_64:x86_64-0.7.0-snapshot-509
 ```bash
    ./network_launcher.sh start-app
 ```
+```bash
+[2017-03-11 22:42:43.032] [INFO] PROCUREMENT-NODE - ####################### Server Up - localhost:3000 #######################
+info: [Peer.js]: Peer.const - url: grpc://localhost:7051 options  grpc.ssl_target_name_override=tlsca, grpc.default_authority=tlsca
+info: [Peer.js]: Peer.const - url: grpc://localhost:7056 options  grpc.ssl_target_name_override=tlsca, grpc.default_authority=tlsca
+[2017-03-11 22:42:43.056] [INFO] FILE-WATCHER-NODE - Started watching the files @  /home/archana/gopath/src/github.com/hyperledger/fabric/procurement/node/app/mqnode/input/
+
+
+```
 ## Cleaning the Network
 ```bash
    ./network_launcher.sh down
