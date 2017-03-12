@@ -30,8 +30,7 @@ Check your Docker, Docker-Compose, Go, NodeJs, Npm versions with the following c
    cd contingent-labor/network
    ./network_launcher.sh up
 ```
-This will pull the images for Orderer, Peer and CA which passed end-to-end node-sdk and java-sdk programs and launch the network using these images.
-
+It will spin up the network with one orderer, two peers and one CA server and the output will contain the container ID, image and container names as given below
 ```bash
    CONTAINER ID        IMAGE                                                              COMMAND                  CREATED        STATUS                  PORTS                                            NAMES
 ab3ec4d706ad        rameshthoomu/fabric-peer-x86_64:x86_64-0.7.0-snapshot-509d8ed      "peer node start -..."   2 seconds ago       Up Less than a second   0.0.0.0:7056->7051/tcp, 0.0.0.0:7058->7053/tcp   peer1
@@ -39,6 +38,7 @@ ab3ec4d706ad        rameshthoomu/fabric-peer-x86_64:x86_64-0.7.0-snapshot-509d8e
 f845ed1fd438        rameshthoomu/fabric-orderer-x86_64:x86_64-0.7.0-snapshot-509d8ed   "orderer"                6 seconds ago       Up 4 seconds            0.0.0.0:7050->7050/tcp                           orderer0
 851a622ebfec        rameshthoomu/fabric-ca-x86_64:x86_64-0.7.0-snapshot-f18b6b7        "sh -c 'fabric-ca-..."   6 seconds ago       Up 4 seconds            0.0.0.0:7054->7054/tcp                           ca0
 ```
+docker images command displays the images that are launched by the network
 ```bash
 archana@archana-ITPC:~/gopath/src/github.com/hyperledger/fabric/procurement/network$ docker images
 REPOSITORY                           TAG                             IMAGE ID            CREATED             SIZE
@@ -50,18 +50,22 @@ rameshthoomu/fabric-ccenv-x86_64     x86_64-0.7.0-snapshot-509d8ed   6d713063f87
 hyperledger/fabric-baseos            x86_64-0.3.0                    c3a4cf3b3350        6 weeks ago         161 MB
 ```
 ## Installing the Node Modules
+All the dependencies mentioned in the package.json will be installed
 ```bash
    ./network_launcher.sh modules
 ```
 ## Deploying the Chaincode 
+It will call ```node deploy.js```  which will deploy the chaincode on the network and init() is executed
 ```bash
    ./network_launcher.sh deploy
 ```
+Expected Output is given below
 ```bash
 [2017-03-11 22:35:54.582] [DEBUG] DEPLOY - The chaincode deploy transaction has been committed on this peer0
 [2017-03-11 22:35:54.583] [DEBUG] DEPLOY - The chaincode deploy transaction was valid code=VALID
 [2017-03-11 22:35:54.585] [INFO] DEPLOY - Successfully sent deployment transaction to the orderer.
 ```
+When ```docker ps```command is given after deploying, two new chaincode containers will be displayed
 ```bash
 archana@archana-ITPC:~/gopath/src/github.com/hyperledger/fabric/procurement/network$ docker ps
 CONTAINER ID        IMAGE                                                              COMMAND                  CREATED              STATUS              PORTS                                            NAMES
@@ -74,6 +78,7 @@ c8fc43adb3c8        rameshthoomu/fabric-ca-x86_64:x86_64-0.7.0-snapshot-f18b6b7 
 
 ```
 ## Starting the Application
+To start the application, execute the following command
 ```bash
    ./network_launcher.sh start-app
 ```
@@ -86,6 +91,7 @@ info: [Peer.js]: Peer.const - url: grpc://localhost:7056 options  grpc.ssl_targe
 
 ```
 ## Cleaning the Network
+To remove the network and the containers, execute the following command
 ```bash
    ./network_launcher.sh down
 ```
