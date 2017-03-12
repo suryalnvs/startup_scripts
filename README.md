@@ -61,6 +61,16 @@ hyperledger/fabric-baseos            x86_64-0.3.0                    c3a4cf3b335
 [2017-03-11 22:35:54.582] [DEBUG] DEPLOY - The chaincode deploy transaction has been committed on this peer0
 [2017-03-11 22:35:54.583] [DEBUG] DEPLOY - The chaincode deploy transaction was valid code=VALID
 [2017-03-11 22:35:54.585] [INFO] DEPLOY - Successfully sent deployment transaction to the orderer.
+```
+```bash
+archana@archana-ITPC:~/gopath/src/github.com/hyperledger/fabric/procurement/network$ docker ps
+CONTAINER ID        IMAGE                                                              COMMAND                  CREATED              STATUS              PORTS                                            NAMES
+5c7eafa773d4        peer0-peer0-proc5-02                                               "chaincode -peer.a..."   18 seconds ago       Up 16 seconds                                                        peer0-peer0-proc5-02
+1bd5502e0c7c        peer1-peer1-proc5-02                                               "chaincode -peer.a..."   19 seconds ago       Up 16 seconds                                                        peer1-peer1-proc5-02
+5f685258745a        rameshthoomu/fabric-peer-x86_64:x86_64-0.7.0-snapshot-509d8ed      "peer node start -..."   About a minute ago   Up About a minute   0.0.0.0:7056->7051/tcp, 0.0.0.0:7058->7053/tcp   peer1
+fcdb7115f1e0        rameshthoomu/fabric-peer-x86_64:x86_64-0.7.0-snapshot-509d8ed      "peer node start -..."   About a minute ago   Up About a minute   0.0.0.0:7051->7051/tcp, 0.0.0.0:7053->7053/tcp   peer0
+f6a6c26daf33        rameshthoomu/fabric-orderer-x86_64:x86_64-0.7.0-snapshot-509d8ed   "orderer"                About a minute ago   Up About a minute   0.0.0.0:7050->7050/tcp                           orderer0
+c8fc43adb3c8        rameshthoomu/fabric-ca-x86_64:x86_64-0.7.0-snapshot-f18b6b7        "sh -c 'fabric-ca-..."   About a minute ago   Up About a minute   0.0.0.0:7054->7054/tcp                           ca0
 
 ```
 ## Starting the Application
