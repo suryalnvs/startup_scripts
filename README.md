@@ -38,7 +38,7 @@ ab3ec4d706ad        rameshthoomu/fabric-peer-x86_64:x86_64-0.7.0-snapshot-509d8e
 f845ed1fd438        rameshthoomu/fabric-orderer-x86_64:x86_64-0.7.0-snapshot-509d8ed   "orderer"                6 seconds ago       Up 4 seconds            0.0.0.0:7050->7050/tcp                           orderer0
 851a622ebfec        rameshthoomu/fabric-ca-x86_64:x86_64-0.7.0-snapshot-f18b6b7        "sh -c 'fabric-ca-..."   6 seconds ago       Up 4 seconds            0.0.0.0:7054->7054/tcp                           ca0
 ```
-docker images command displays the images that are launched by the network
+The ```docker images``` command displays the images that are launched by the network
 ```bash
 archana@archana-ITPC:~/gopath/src/github.com/hyperledger/fabric/procurement/network$ docker images
 REPOSITORY                           TAG                             IMAGE ID            CREATED             SIZE
