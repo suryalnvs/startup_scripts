@@ -48,7 +48,7 @@ f845ed1fd438        rameshthoomu/fabric-orderer-x86_64:x86_64-0.7.0-snapshot-509
    ./network_launcher.sh deploy
 ```
 ```bash
-   [2017-03-11 22:35:54.582] [DEBUG] DEPLOY - The chaincode deploy transaction has been committed on this peer0
+[2017-03-11 22:35:54.582] [DEBUG] DEPLOY - The chaincode deploy transaction has been committed on this peer0
 [2017-03-11 22:35:54.583] [DEBUG] DEPLOY - The chaincode deploy transaction was valid code=VALID
 [2017-03-11 22:35:54.585] [INFO] DEPLOY - Successfully sent deployment transaction to the orderer.
 
