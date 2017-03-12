@@ -55,22 +55,3 @@ f845ed1fd438        rameshthoomu/fabric-orderer-x86_64:x86_64-0.7.0-snapshot-509
 ```bash
    ./network_launcher.sh down
 ```
-
-
-
-## Installing the Node Modules
-```bash
-   ./network_launcher.sh modules
-```
-## Deploying the Chaincode 
-```bash
-   ./network_launcher.sh deploy
-```
-## Starting the Application
-```bash
-   ./network_launcher.sh start-app
-```
-## Cleaning the Network
-```bash
-   ./network_launcher.sh down
-```
