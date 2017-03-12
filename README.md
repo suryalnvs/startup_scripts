@@ -39,6 +39,16 @@ ab3ec4d706ad        rameshthoomu/fabric-peer-x86_64:x86_64-0.7.0-snapshot-509d8e
 f845ed1fd438        rameshthoomu/fabric-orderer-x86_64:x86_64-0.7.0-snapshot-509d8ed   "orderer"                6 seconds ago       Up 4 seconds            0.0.0.0:7050->7050/tcp                           orderer0
 851a622ebfec        rameshthoomu/fabric-ca-x86_64:x86_64-0.7.0-snapshot-f18b6b7        "sh -c 'fabric-ca-..."   6 seconds ago       Up 4 seconds            0.0.0.0:7054->7054/tcp                           ca0
 ```
+```bash
+archana@archana-ITPC:~/gopath/src/github.com/hyperledger/fabric/procurement/network$ docker images
+REPOSITORY                           TAG                             IMAGE ID            CREATED             SIZE
+rameshthoomu/fabric-ca-x86_64        x86_64-0.7.0-snapshot-f18b6b7   6033fee0716b        6 days ago          239 MB
+rameshthoomu/fabric-orderer-x86_64   x86_64-0.7.0-snapshot-509d8ed   85ec9965dc5c        6 days ago          180 MB
+rameshthoomu/fabric-peer-x86_64      x86_64-0.7.0-snapshot-509d8ed   bc7e875f86a9        6 days ago          184 MB
+hyperledger/fabric-ccenv             x86_64-0.7.0-snapshot-509d8ed   6d713063f875        6 days ago          1.29 GB
+rameshthoomu/fabric-ccenv-x86_64     x86_64-0.7.0-snapshot-509d8ed   6d713063f875        6 days ago          1.29 GB
+hyperledger/fabric-baseos            x86_64-0.3.0                    c3a4cf3b3350        6 weeks ago         161 MB
+```
 ## Installing the Node Modules
 ```bash
    ./network_launcher.sh modules
