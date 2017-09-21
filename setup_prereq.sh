@@ -41,9 +41,11 @@ fi
 sudo service docker restart
 
 echo "===============Installing NodeJS and NPM==============="
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt-get update
-sudo apt-get install -y nodejs
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+nvm install lts/boron
 
 echo "===============Installing Docker-Compose==============="
 sudo apt-get -y install curl
