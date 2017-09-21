@@ -18,16 +18,16 @@ if [ ! -f "/etc/profile.d/setting_gopath.sh" ]; then
 fi
 
 echo "===============Installing Docker==============="
-sudo apt-get -y install apt-transport-https ca-certificates
-sudo apt-key adv \
-               --keyserver hkp://ha.pool.sks-keyservers.net:80 \
-               --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-if [ ! -f "/etc/apt/sources.list.d/docker.list" ]; then
-     echo "deb https://apt.dockerproject.org/repo ubuntu-$(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/docker.list
-fi
+sudo apt-get update 
+sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
 sudo apt-get update
 sudo apt-get -y install linux-image-extra-$(uname -r) linux-image-extra-virtual
-sudo apt-get -y install docker-engine
+sudo apt-get -y install docker-ce
 sudo usermod -aG docker $(whoami)
 if [ "$(lsb_release -rs)" == "16.04" || "$(lsb_release -rs)" == "16.10" ]; then 
      sudo sed  -i 's/\(.* -H fd:\/\/\)\(.*\)/\1 -H tcp\:\/\/0.0.0.0\:2375 -H unix\:\/\/\/var\/run\/docker\.sock/' /lib/systemd/system/docker.service
