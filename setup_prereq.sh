@@ -8,7 +8,7 @@ sudo apt-get install -y build-essential libssl-dev
 
 echo "===============Installing Go==============="
 if [ ! -d "go" ]; then
-     wget https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz && sudo tar -C ~/ -xzvf go1.7.3.linux-amd64.tar.gz
+     wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz && sudo tar -C ~/ -xzvf go1.9.2.linux-amd64.tar.gz
 fi
 
 echo "===============Setting GOROOT and GOPATH==============="
@@ -41,11 +41,13 @@ fi
 sudo service docker restart
 
 echo "===============Installing NodeJS and NPM==============="
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-nvm install lts/boron
+#curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+#nvm install lts/boron
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
 echo "===============Installing Docker-Compose==============="
 sudo apt-get -y install curl
