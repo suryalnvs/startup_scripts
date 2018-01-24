@@ -28,7 +28,7 @@ if [ ! -d "$INSTALL_DIR" ]; then
      cd ~ && git clone http://192.168.5.61:8080/eDappinstall
 else
      cd $INSTALL_DIR
-     git checkout -- ./ansible/vars/aws.yml
+     git checkout -- ./ansible/vars/aws.yml ./ansible/run/runhosts
      git pull origin master
 fi
 cd $INSTALL_DIR/ansible
