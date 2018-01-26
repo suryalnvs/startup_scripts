@@ -35,7 +35,7 @@ cd $INSTALL_DIR/ansible
 sed -i "s/ibmadmin/${USER}/g" ./vars/aws.yml
 sudo ntpdate us.pool.ntp.org
 ansible-playbook -i run/runhosts -e "mode=apply env=aws cloud_type=aws password=$AWS_SECRET_KEY" provcluster.yml
-ansible-playbook -i run/runhosts -e "mode=apply env=aws deploy_type=compose" initcluster.yml --skip-tags="resetconn"
+ansible-playbook -i run/runhosts -e "mode=apply env=aws deploy_type=compose" initcluster.yml 
 #ansible-playbook -i run/runhosts -e "mode=apply env=aws env_type=k8s" initcluster.yml --skip-tags="resetconn"
 ansible-playbook -i run/runhosts -e "mode=apply env=bc1st target=configtxgen,cryptogen" setupfabric.yml
 ansible-playbook -i run/runhosts -e "mode=apply env=bc1st app=procurement" application.yml
